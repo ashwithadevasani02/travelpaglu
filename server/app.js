@@ -2,7 +2,7 @@ const dotenv= require("dotenv");
 dotenv.config();
 const express=require("express");
 const app=express();
-const port =8000;
+const port = process.env.PORT || 8000;
 const mongoose=require("mongoose");
 const methodOverride= require("method-override");
 const ejsMate=require("ejs-mate");
