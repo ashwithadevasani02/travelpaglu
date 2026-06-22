@@ -1,0 +1,88 @@
+<% layout("/layouts/boilerplate") -%>
+<script src="/js/map.js"></script>
+<script>
+     let newCo = <%- JSON.stringify(listing.geometry.coordinates) %>;
+    let newcoordinates = [newCo[1], newCo[0]];
+    updateLocation(newcoordinates)
+</script>
+<body>
+  <div class="custom">
+     <div class="row">
+    <div class="col-8 offset-2 mt-5">
+         <h3><i><b>Edit Listing</b></i></h3>
+    <form method="POST" action="/listings/<%=listing._id%>?_method=PUT" enctype="multipart/form-data" class="needs-validation" novalidate>
+    <div class="mb-3">
+        <label for="title" class="form-label"><i>Title</i></label>
+        <input name="listing[title]"  type="text" value="<%=listing.title%>" class="form-control" required>
+         <div class="valid-feedback">
+         Looks good!
+        </div>
+        <div class="invalid-feedback">
+         Title Field is required
+        </div>
+    </div>
+    <div class="mb-3">
+         <label for="description" class="form-label"><i>Description</i></label>
+         <textarea name="listing[description]" class="form-control" required><%=listing.description%></textarea>
+         <div class="valid-feedback">
+         Looks good!
+        </div>
+        <div class="invalid-feedback">
+         Description Field is required
+        </div>
+    </div>
+    <div class="mb-3 ">
+        <i>Previous Listing Image</i>
+        <br>
+        
+         <img src="<%=originalImageUrl %>" style="border-radius: 1rem; width:400px">
+    </div>
+     <div class="mb-3 ">
+        <label for="image" class="form-label"><i>Upload Image</i></label>
+         <input name="listing[image]" type="file" class="form-control" >
+          <div class="valid-feedback">
+                Image URL is valid
+               </div>
+               <div class="invalid-feedback">
+                Enter a Valid Image URL
+               </div>
+    </div>
+    <div class="row">  
+    <div class="mb-3 col-md-4">
+        <label for="price" class="form-label"><i>Price</i></label>
+        <input name="listing[price]" type="number" value="<%=listing.price%>" class="form-control" required>
+        <div class="valid-feedback">
+         Looks good!
+        </div>
+        <div class="invalid-feedback">
+         Price Field is required
+        </div>
+    </div>
+     <div class="mb-3 col-md-8">
+         <label for="location" class="form-label"><i>Location</i></label>
+        <input name="listing[location]" value="<%=listing.location%>" class="form-control" required>
+        <div class="valid-feedback">
+         Looks good!
+        </div>
+        <div class="invalid-feedback">
+         Location Field is required
+        </div>
+    </div>
+    </div>
+    <div class="mb-3">
+        <label for="country" class="form-label"><i>Country</i></label>
+        <input name="listing[country]" value="<%=listing.country%>" class="form-control" required>
+        <div class="valid-feedback">
+         Looks good!
+        </div>
+        <div class="invalid-feedback">
+         Country Field is required
+        </div>
+    </div>  
+        <button class="btn btn-outline-primary add-color mt-3">Edit</button>
+    </form>
+    </div>
+   </div>
+  </div>
+</body>
+<script src="/js/script.js"></script>
